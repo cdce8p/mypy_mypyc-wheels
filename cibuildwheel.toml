@@ -11,6 +11,10 @@ skip = [
   "pp*",
 ]
 
+build = [
+  "cp313-*",
+]
+
 # Python 3.8 can't be tested on macOS arm64
 test-skip = "cp38-macosx_arm64"
 

@@ -1,6 +1,6 @@
 name: Build wheels
 
-on: [push, pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -10,6 +10,7 @@ jobs:
   generate_wheels_matrix:
     name: Generate wheels matrix
     runs-on: ubuntu-latest
+    if: false
     outputs:
       include: ${{ steps.set-matrix.outputs.include }}
     steps:
@@ -46,12 +47,12 @@ jobs:
 
   build_wheels:
     name: Build ${{ matrix.only }}
-    needs: generate_wheels_matrix
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.generate_wheels_matrix.outputs.include) }}
+        os: ["ubuntu-latest"]
+        only: ["cp313-manylinux_x86_64"]
 
     steps:
       - uses: actions/checkout@v4
@@ -78,6 +79,7 @@ jobs:
   build_sdist_python_wheel:
     name: sdist and python wheel
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -113,6 +115,7 @@ jobs:
   build_wasm_wheel:
     name: WASM wheel for 3.10
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

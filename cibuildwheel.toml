@@ -58,7 +58,7 @@ windows.test-command = """ \
 """
 
 [tool.cibuildwheel.config-settings]
---build-option = "--use-mypyc"
+# --build-option = "--use-mypyc"
 
 [tool.cibuildwheel.environment]
 MYPYC_OPT_LEVEL = "3"

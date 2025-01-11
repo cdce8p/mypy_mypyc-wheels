@@ -64,7 +64,7 @@ jobs:
           git clone https://github.com/python/mypy.git --recurse-submodules
           git -C mypy checkout $(cat mypy_commit)
 
-      - uses: pypa/cibuildwheel@v2.22.0
+      - uses: cdce8p/cibuildwheel@62a4df8cfaf68c2cad9f34679a404a6be5b6a745
         with:
           config-file: cibuildwheel.toml
           package-dir: mypy
